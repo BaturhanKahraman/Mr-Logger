@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrLogger", "Baturhan.Logger\MrLogger.csproj", "{D2784920-1576-49FD-8A1F-64C7CCBCC036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrLogger", "MrLogger\MrLogger.csproj", "{D2784920-1576-49FD-8A1F-64C7CCBCC036}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrLogger.Test", "MrLogger.Test\MrLogger.Test.csproj", "{21753626-0003-418B-8FF0-51C9F407FD62}"
 EndProject
