@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MrLogger.Settings
+﻿namespace MrLogger.Settings
 {
-    public class FileSetting:Setting    {
+    public class FileSetting : Setting
+    {
+        public string FullPath { get; set; }
+        public long FileSizeLimit { get; set; }
+        public bool DateTimeInFileName { get; set; }
+        public bool LogFilePerDay { get; set; }
     }
 }

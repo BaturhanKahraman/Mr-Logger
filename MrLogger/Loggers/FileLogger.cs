@@ -2,18 +2,38 @@
 using System;
 using MrLogger.Utility.Extensions;
 using MrLogger.Utility.Helper;
+using MrLogger.Settings;
 
 namespace MrLogger.Loggers
 {
-    public class FileLogger :ConsoleLogger, IFileLogger,IDisposable
+    public class FileLogger :ConsoleLogger, IFileLogger
     {
-        private readonly string _fullPath;
-        //private readonly FileStream _stream;
+        private string _fullPath;
+        private readonly FileSetting _fileSetting;
+        /// <summary>
+        /// Default ctor. It will get current directory as default.
+        /// </summary>
+        public FileLogger()
+        {
+            _fullPath = FileHelper.MergeDirectoryAndLogFile(Directory.GetCurrentDirectory(),"log.txt");
+        }
+        /// <summary>
+        /// Ctor with full path.
+        /// </summary>
+        /// <param name="fullPath">Your full path. You can both give file name or not. Default is log.txt</param>
         public FileLogger(string fullPath)
         {
-            fullPath ??= Directory.GetCurrentDirectory();
-            //_stream = new FileStream(fullPath, FileMode.OpenOrCreate);
             _fullPath = FileHelper.MergeDirectoryAndLogFile(fullPath, "log.txt");
+        }
+
+        public FileLogger(FileSetting fileSetting) 
+        {
+            _fileSetting = fileSetting ?? throw new ArgumentNullException(nameof(fileSetting));
+        }
+
+        public FileLogger(bool readSettingsFromSettings)
+        {
+            //TODO
         }
 
         public override void Danger(string message)
@@ -45,10 +65,25 @@ namespace MrLogger.Loggers
             File.AppendAllText(_fullPath, message.AddDate().AddLevel(nameof(this.Info)) + Environment.NewLine);
             base.Info(message);
         }
-        public void Dispose()
+
+        public void SetUpFileSetting()
         {
-            //_stream.Close();
-            //throw new NotImplementedException();
+            //TODO
+            //DÜZELTİLECEK.
+            _fullPath= FileHelper.MergeDirectoryAndLogFile(_fileSetting.FullPath);
+            if (_fileSetting.LogFilePerDay)
+            {
+                //TODO
+                //CHECK if there is a file for today
+                //If no file Create it
+                string fullPathWithDate = _fileSetting.FullPath.GetWithDate(_fileSetting.DateTimeInFileName);
+                if (!File.Exists(fullPathWithDate))
+                {
+                    File.Create(fullPathWithDate).Close();
+                }
+
+
+            }
         }
     }
 }

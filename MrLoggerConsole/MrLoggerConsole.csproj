@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Baturhan.Logger\MrLogger.csproj" />
+    <ProjectReference Include="..\MrLogger\MrLogger.csproj" />
   </ItemGroup>
 
 </Project>

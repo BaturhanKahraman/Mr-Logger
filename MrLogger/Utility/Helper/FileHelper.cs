@@ -29,13 +29,9 @@ namespace MrLogger.Utility.Helper
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException(nameof(path));
-            if (string.IsNullOrEmpty(logFileName))
-                throw new ArgumentNullException(nameof(logFileName));
             bool isDirectory = FileHelper.isDirectory(path);
             if (isDirectory)
             {
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
                 return Path.Combine(path, logFileName);
             }
             return path;
